@@ -64,4 +64,9 @@ public class PaymentController {
             return new CommonResult(444,"查询结果为空,查询ID:"+id,null);
         }
     }
+    @GetMapping(value = "/lb")
+    public String getPaymentLB(){
+        return serverPort;
+    }
+
 }
