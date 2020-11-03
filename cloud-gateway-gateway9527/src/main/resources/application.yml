@@ -16,3 +16,16 @@ eureka:
 spring:
   application:
     name: cloud-gaetway-service
+
+  cloud:
+    gateway:
+      routes:
+        - id: payment-route   #随便写 但要求唯一，建议配合服务名
+          uri: http://localhost:8001  #匹配提供服务的路由地址
+          predicates:
+            - Path=/payment/getPaymentById/**
+
+        - id: payment-route2
+          uri: http://localhost:8002
+          predicates:
+            - Path=/payment/lb/**
