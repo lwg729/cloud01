@@ -19,13 +19,16 @@ spring:
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true  #开启从注册中心动态提取创建路由的过程，利用微服务进行路由
       routes:
         - id: payment-route   #随便写 但要求唯一，建议配合服务名
-          uri: http://localhost:8001  #匹配提供服务的路由地址
+          uri: lb://cloud-payment-service   #匹配提供服务的路由地址
           predicates:
             - Path=/payment/getPaymentById/**
 
         - id: payment-route2
-          uri: http://localhost:8002
+          uri: lb://cloud-payment-service
           predicates:
             - Path=/payment/lb/**
